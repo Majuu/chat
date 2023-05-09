@@ -1,4 +1,8 @@
 import { Component } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { FirebaseApp, initializeApp } from 'firebase/app';
+import { Database, getDatabase, ref, set, onValue  } from "firebase/database";
+import { Chat } from 'src/models/chat.model';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +10,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'chat';
+  title = 'firechat';
+  // app: FirebaseApp;
+  // db: Database;
+  // form: FormGroup;
+  // username = '';
+  // message = '';
+  // chats: Chat[] = [];
 }

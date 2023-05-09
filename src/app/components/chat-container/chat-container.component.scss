@@ -1,0 +1,32 @@
+@import "/src/variables";
+
+.chat {
+  height: 100%;
+  display: flex;
+  align-items: center;
+
+  &__container {
+    border: 2px solid $color-purple;
+    width: 500px;
+    height: 70%;
+    border-radius: 10px;
+  }
+
+  &__top {
+    height: 90%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-bottom: 16px;
+  }
+
+  &__bottom {
+    height: 10%;
+    background-color: $color-purple;
+  }
+
+  &__form {
+    width: 100%;
+  }
+}

@@ -1,0 +1,15 @@
+@import "/src/variables";
+
+.bubble {
+  background-color: $color-purple;
+  border-radius: 10px;
+  padding: 25px;
+
+  &-user {
+    border-top-left-radius: 0;
+  }
+
+  &-guest {
+    border-top-right-radius: 0;
+  }
+}

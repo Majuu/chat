@@ -1,0 +1,39 @@
+@import "/src/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.submit {
+  border: 1px solid $color-white;
+  background-color: $color-light-purple;
+}
+
+mat-icon {
+  margin: 0 !important;
+}
+
+input {
+  flex: 1;
+  padding: 9px;
+  border: none;
+  outline: none;
+  background-color: $color-purple;
+  color: $color-white;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: $color-white;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: $color-white;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+  color: $color-white;
+}
