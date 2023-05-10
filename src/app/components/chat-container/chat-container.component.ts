@@ -47,12 +47,7 @@ export class ChatContainerComponent implements OnInit {
 
   onChatSubmit(msg: string): void {
     const chat = new Chat(uuidv4(), this.userService.user, msg, new Date().toString());
-    set(ref(this.db, `chats/${chat.id}`), chat);
-    // this.form = this.formBuilder.group({
-    //   'message' : [],
-    //   'username' : [chat.username],
-    // });
-    this.scrollToBottom();
+    set(ref(this.db, `chats/${chat.id}`), chat).then(() => this.scrollToBottom());
   }
 
   scrollToBottom = (): void => {
@@ -60,7 +55,7 @@ export class ChatContainerComponent implements OnInit {
       this.chatRef.nativeElement.scrollTop = this.chatRef.nativeElement.scrollHeight;
     } catch (err) {}
   }
-
 }
 
 // ! WHO IS ONLINE!
+// ! sort by date on fe
