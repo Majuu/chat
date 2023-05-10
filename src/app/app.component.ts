@@ -13,7 +13,6 @@ export class AppComponent implements OnInit {
   $isUserProvided: BehaviorSubject<boolean>;
 
   constructor(private userSerivce: UserService, private dialog: MatDialog) {
-    this.userSerivce.user = {id:'12345', name: 'Maju'};
     this.$isUserProvided = this.userSerivce.userActive$;
   }
 
