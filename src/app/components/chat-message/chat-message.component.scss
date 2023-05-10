@@ -3,14 +3,29 @@
 .bubble {
   background-color: $color-purple;
   border-radius: 10px;
-  padding: 25px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-top: 10px;
+  padding-bottom: 10px;
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
 
-  &-user {
-    border-top-left-radius: 0;
+  &-author {
+    border-top-right-radius: 0;
   }
 
   &-guest {
-    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+  }
+
+  #user-date {
+    font-size: 11px;
+    font-weight: lighter
+  }
+
+  #message {
+    margin-top: 5px;
+    margin-bottom: 5px;
   }
 }

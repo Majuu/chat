@@ -2,8 +2,9 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Database, getDatabase, ref, set, onValue, DatabaseReference, DataSnapshot  } from "firebase/database";
+import { Chat } from 'src/app/models/chat.model';
+import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
-import { Chat } from 'src/models/chat.model';
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -25,7 +26,7 @@ export class ChatContainerComponent implements OnInit {
     'username': []
   });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -45,12 +46,12 @@ export class ChatContainerComponent implements OnInit {
   }
 
   onChatSubmit(msg: string): void {
-    const chat = new Chat(uuidv4(), 'Maju', msg, new Date().toString());
+    const chat = new Chat(uuidv4(), this.userService.user, msg, new Date().toString());
     set(ref(this.db, `chats/${chat.id}`), chat);
-    this.form = this.formBuilder.group({
-      'message' : [],
-      'username' : [chat.username],
-    });
+    // this.form = this.formBuilder.group({
+    //   'message' : [],
+    //   'username' : [chat.username],
+    // });
     this.scrollToBottom();
   }
 
