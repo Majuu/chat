@@ -4,5 +4,5 @@
   </mat-form-field>
 </div>
 <div mat-dialog-actions align="end">
-  <button [disabled]="!userName.length" mat-button [mat-dialog-close]="userName.length" (click)="addNewUser()">Let's chat!</button>
+  <button [disabled]="!userName.trim().length" mat-button [mat-dialog-close]="userName.length" (click)="addNewUser()">Let's chat!</button>
 </div>

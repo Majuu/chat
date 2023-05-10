@@ -63,9 +63,10 @@ export class ChatContainerComponent implements OnInit {
   }
 }
 
+// ! move WS logic to services????
 // ! WHO IS ONLINE!
 // ! forms handling
 // ! delete all on init
+// ! add prettier
 // ! tests
-// ! linter
 // ! delete env on github https://stackoverflow.com/questions/30696930/how-to-hide-env-file-from-github
