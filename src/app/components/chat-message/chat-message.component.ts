@@ -12,7 +12,7 @@ export class ChatMessageComponent {
   @Input() chats: Chat[] = [];
 
   user: User;
-  authorUserName: string = `You (${this.userService.user.name})`;
+  authorUserName = `You (${this.userService.user.name})`;
 
   constructor(private userService: UserService) {
     this.user = this.userService.user;

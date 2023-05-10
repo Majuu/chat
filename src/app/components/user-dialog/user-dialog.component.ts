@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./user-dialog.component.scss']
 })
 export class UserDialogComponent {
-  userName: string = '';
+  userName = '';
 
   constructor(
     private userService: UserService,

@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Database, getDatabase, ref, set, onValue, DatabaseReference, DataSnapshot  } from "firebase/database";
+import { Database, getDatabase, ref, set, onValue, DatabaseReference, DataSnapshot } from "firebase/database";
 import { Chat } from 'src/app/models/chat.model';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
@@ -36,7 +36,7 @@ export class ChatContainerComponent implements OnInit {
 
   lookForDuplicatesAndSortChats(data: {[key: string]: Chat}): void {
     const unsortedChats: Chat[] = [];
-    for(let id in data) {
+    for(const id in data) {
       if (!this.chats.map(chat => chat.id).includes(id)) {
         unsortedChats.push(data[id])
       }
@@ -58,7 +58,7 @@ export class ChatContainerComponent implements OnInit {
     setTimeout(() => {
       try {
         this.chatRef.nativeElement.scrollTop = this.chatRef.nativeElement.scrollHeight;
-      } catch (err) {}
+      } catch (err) { return; }
     }, 0)
   }
 }

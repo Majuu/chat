@@ -6,9 +6,9 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./chat-form.component.scss']
 })
 export class ChatFormComponent {
-  @Output() sendMessage = new EventEmitter<any>();
+  @Output() sendMessage = new EventEmitter<string>();
 
-  chatMessage: string = '';
+  chatMessage = '';
 
   submit(): void {
     this.sendMessage.emit(this.chatMessage);
