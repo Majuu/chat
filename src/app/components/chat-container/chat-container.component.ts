@@ -1,5 +1,4 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Database, getDatabase, ref, set, onValue, DatabaseReference, DataSnapshot  } from "firebase/database";
 import { Chat } from 'src/app/models/chat.model';
@@ -13,20 +12,14 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./chat-container.component.scss']
 })
 export class ChatContainerComponent implements OnInit {
-  @ViewChild('chatRef', {static: false}) chatRef!: ElementRef;
+  @ViewChild('chatRef') chatRef!: ElementRef;
 
-  app: FirebaseApp = initializeApp(environment.firebase);
-  db: Database = getDatabase(this.app);
-  username = '';
-  message = '';
+  private app: FirebaseApp = initializeApp(environment.firebase);
+  private db: Database = getDatabase(this.app);
+
   chats: Chat[] = [];
 
-  form: FormGroup = this.formBuilder.group({
-    'message': [],
-    'username': []
-  });
-
-  constructor(private formBuilder: FormBuilder, private userService: UserService) {
+  constructor(private userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -37,25 +30,42 @@ export class ChatContainerComponent implements OnInit {
     const chatsRef: DatabaseReference = ref(this.db, 'chats');
     onValue(chatsRef, (snapshot: DataSnapshot) => {
       const data: {[key: string]: Chat} = snapshot.val();
-      for(let id in data) {
-        if (!this.chats.map(chat => chat.id).includes(id)) {
-          this.chats.push(data[id])
-        }
-      }
+        this.lookForDuplicatesAndSortChats(data);
     });
+  }
+
+  lookForDuplicatesAndSortChats(data: {[key: string]: Chat}): void {
+    const unsortedChats: Chat[] = [];
+    for(let id in data) {
+      if (!this.chats.map(chat => chat.id).includes(id)) {
+        unsortedChats.push(data[id])
+      }
+    }
+    if(!this.chats.length) {
+      this.chats = unsortedChats.sort((a, b) => (Date.parse(a.timestamp) - Date.parse(b.timestamp)));
+    } else {
+      this.chats.push(...unsortedChats)
+    }
+     this.scrollToBottom();
   }
 
   onChatSubmit(msg: string): void {
     const chat = new Chat(uuidv4(), this.userService.user, msg, new Date().toString());
-    set(ref(this.db, `chats/${chat.id}`), chat).then(() => this.scrollToBottom());
+    set(ref(this.db, `chats/${chat.id}`), chat);
   }
 
   scrollToBottom = (): void => {
-    try {
-      this.chatRef.nativeElement.scrollTop = this.chatRef.nativeElement.scrollHeight;
-    } catch (err) {}
+    setTimeout(() => {
+      try {
+        this.chatRef.nativeElement.scrollTop = this.chatRef.nativeElement.scrollHeight;
+      } catch (err) {}
+    }, 0)
   }
 }
 
 // ! WHO IS ONLINE!
-// ! sort by date on fe
+// ! forms handling
+// ! delete all on init
+// ! tests
+// ! linter
+// ! delete env on github https://stackoverflow.com/questions/30696930/how-to-hide-env-file-from-github
