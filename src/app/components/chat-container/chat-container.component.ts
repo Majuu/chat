@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FirebaseApp, initializeApp } from 'firebase/app';
-import { Database, getDatabase, ref, set, onValue, DatabaseReference, DataSnapshot } from "firebase/database";
+import { Database, getDatabase, ref, set, onValue, DatabaseReference, DataSnapshot } from 'firebase/database';
 import { Chat } from 'src/app/models/chat.model';
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
