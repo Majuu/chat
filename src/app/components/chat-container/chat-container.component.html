@@ -1,10 +1,10 @@
 <div class="chat">
   <mat-card class="chat__container">
     <mat-card-content class="chat__top">
-     <app-chat-message></app-chat-message>
+     <app-chat-messages [chats]="chats"></app-chat-messages>
     </mat-card-content>
     <mat-card-actions class="chat__bottom">
-      <app-chat-form class="chat__form"></app-chat-form>
+      <app-chat-form (sendMessage)="onChatSubmit($event)" class="chat__form"></app-chat-form>
     </mat-card-actions>
   </mat-card>
 </div>

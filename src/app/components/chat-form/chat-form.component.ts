@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-chat-form',
@@ -6,8 +6,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./chat-form.component.scss']
 })
 export class ChatFormComponent {
+  @Output() sendMessage = new EventEmitter<any>();
 
-  sendMessage(): void {
-    console.log('message sent')
+  chatMessage: string = '';
+
+  submit(): void {
+    this.sendMessage.emit(this.chatMessage);
+    this.chatMessage = '';
   }
 }
