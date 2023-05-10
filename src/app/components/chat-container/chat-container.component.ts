@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Database, getDatabase, ref, set, onValue, DatabaseReference, DataSnapshot  } from "firebase/database";
@@ -12,6 +12,8 @@ import { v4 as uuidv4 } from 'uuid';
   styleUrls: ['./chat-container.component.scss']
 })
 export class ChatContainerComponent implements OnInit {
+  @ViewChild('chatRef', {static: false}) chatRef!: ElementRef;
+
   app: FirebaseApp = initializeApp(environment.firebase);
   db: Database = getDatabase(this.app);
   username = '';
@@ -49,7 +51,15 @@ export class ChatContainerComponent implements OnInit {
       'message' : [],
       'username' : [chat.username],
     });
+    this.scrollToBottom();
   }
+
+  scrollToBottom = (): void => {
+    try {
+      this.chatRef.nativeElement.scrollTop = this.chatRef.nativeElement.scrollHeight;
+    } catch (err) {}
+  }
+
 }
 
 // ! WHO IS ONLINE!

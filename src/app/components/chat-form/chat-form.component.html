@@ -1,6 +1,6 @@
 <div class="container">
   <input [(ngModel)]="chatMessage" matInput placeholder="Your message...">
-  <button mat-stroked-button (click)="submit()">
+  <button [disabled]="!chatMessage.length" mat-stroked-button (click)="submit()">
     <mat-icon>send</mat-icon>
   </button>
 </div>
