@@ -1,0 +1,13 @@
+@import '/src/variables';
+
+.dialog {
+  &__content {
+    padding: 20px;
+    padding-bottom: 0;
+  }
+}
+
+button {
+  background-color: $color-light-purple;
+  color: white !important;
+}
