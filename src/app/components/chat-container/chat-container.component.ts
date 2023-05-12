@@ -39,7 +39,7 @@ export class ChatContainerComponent implements OnInit {
   }
 }
 
-// ! move WS logic to services????
+// ! add user info (WHO AM I)
 // ! WHO IS ONLINE!
 // ! forms handling
 // ! delete all on init
