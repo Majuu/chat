@@ -3,7 +3,7 @@ import { DatabaseReference, ref, onValue, DataSnapshot, Database, getDatabase, s
 import { Chat } from '../models/chat.model';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { environment } from 'src/environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -31,8 +31,8 @@ export class MessageService {
     scrollCb();
   }
 
-  get chats$() {
-    return this._chats;
+  get chats$(): Observable<Chat[]> {
+    return this._chats.asObservable();
   }
 
   listenToDatabaseChanges(scrollCb: Function): void {

@@ -17,6 +17,5 @@ export class UserDialogComponent {
 
     addNewUser(): void {
       this.userService.user = new User(uuidv4(), this.userName);
-      this.userService.userActive = true;
     }
 }

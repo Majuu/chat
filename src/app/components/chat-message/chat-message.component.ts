@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Chat } from 'src/app/models/chat.model';
 import { User } from 'src/app/models/user.model';
 import { UserService } from 'src/app/services/user.service';
@@ -8,13 +8,18 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './chat-message.component.html',
   styleUrls: ['./chat-message.component.scss']
 })
-export class ChatMessageComponent {
+export class ChatMessageComponent implements OnInit {
   @Input() chats!: Chat[];
 
-  user: User;
-  authorUserName = `You (${this.userService.user.name})`;
+  user!: User;
+  authorUserName = '';
 
   constructor(private userService: UserService) {
-    this.user = this.userService.user;
+
+  }
+
+  ngOnInit(): void {
+    this.user = this.userService.user$.getValue() as User;
+    this.authorUserName = `You (${this.user.name})`;
   }
 }

@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Chat } from 'src/app/models/chat.model';
+import { User } from 'src/app/models/user.model';
 import { MessageService } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,12 +21,12 @@ export class ChatContainerComponent implements OnInit {
     this.messageService.listenToDatabaseChanges(this.scrollToBottom);
   }
 
-  get chatList$(): BehaviorSubject<Chat[]> {
+  get chatList$(): Observable<Chat[]> {
     return this.messageService.chats$;
   }
 
   onChatSubmit(msg: string): void {
-    const chat = new Chat(uuidv4(), this.userService.user, msg, new Date().toString());
+    const chat = new Chat(uuidv4(), this.userService.user$.getValue() as User, msg, new Date().toString());
     this.messageService.onChatSubmit(chat);
   }
 

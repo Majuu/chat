@@ -6,22 +6,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  private currentUser!: User;
-  private isUserProvided$: BehaviorSubject<boolean> = new BehaviorSubject(false);
+  private _currentUser = new BehaviorSubject<User | null>(null);
 
-  get user(): User {
-    return this.currentUser;
+  get user$(): BehaviorSubject<User | null> {
+    return this._currentUser;
   }
 
   set user(user: User) {
-    this.currentUser = user;
-  }
-
-  get userActive$(): BehaviorSubject<boolean> {
-    return this.isUserProvided$;
-  }
-
-  set userActive(isActive: boolean) {
-    this.isUserProvided$.next(isActive);
+    this._currentUser.next(user);
   }
 }
