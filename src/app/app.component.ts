@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { BehaviorSubject } from 'rxjs';
 import { User } from './models/user.model';
+import { WsService } from './services/ws.service';
 
 @Component({
   selector: 'app-root',
@@ -11,9 +12,17 @@ import { User } from './models/user.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private userSerivce: UserService, private dialog: MatDialog) { }
+  constructor(private wsService: WsService, private userSerivce: UserService, private dialog: MatDialog) { }
+
+  //TODO do not remove currently logged in users
+  //TODO detect if user disconnected
+  private initiallyClearAllData(): void {
+    this.wsService.deleteItems('chats').subscribe();
+    this.wsService.deleteItems('users').subscribe();
+  }
 
   ngOnInit(): void {
+    // this.initiallyClearAllData();
     this.dialog.open(UserDialogComponent, {
       disableClose: true
     });

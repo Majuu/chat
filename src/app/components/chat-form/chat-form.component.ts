@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Output, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-chat-form',
@@ -6,6 +6,8 @@ import { Component, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./chat-form.component.scss']
 })
 export class ChatFormComponent {
+  @ViewChild('chatInput') chatInput!: ElementRef;
+
   @Output() sendMessage = new EventEmitter<string>();
 
   chatMessage = '';
@@ -13,5 +15,6 @@ export class ChatFormComponent {
   submit(): void {
     this.sendMessage.emit(this.chatMessage);
     this.chatMessage = '';
+    this.chatInput.nativeElement.focus();
   }
 }

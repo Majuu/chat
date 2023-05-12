@@ -1,17 +1,15 @@
 import { Injectable } from '@angular/core';
-import { DatabaseReference, ref, onValue, DataSnapshot, Database, getDatabase, set } from 'firebase/database';
 import { Chat } from '../models/chat.model';
-import { FirebaseApp, initializeApp } from 'firebase/app';
-import { environment } from 'src/environments/environment';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { WsService } from './ws.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  private app: FirebaseApp = initializeApp(environment.firebase);
-  private db: Database = getDatabase(this.app);
   private _chats = new BehaviorSubject<Chat[]>([]);
+
+  constructor(private wsService: WsService) {}
 
   private lookForDuplicatesAndSortChats(data: {[key: string]: Chat}, scrollCb: Function): void {
     const unsortedChats: Chat[] = [];
@@ -36,14 +34,10 @@ export class MessageService {
   }
 
   listenToDatabaseChanges(scrollCb: Function): void {
-    const chatsRef: DatabaseReference = ref(this.db, 'chats');
-    onValue(chatsRef, (snapshot: DataSnapshot) => {
-      const data: {[key: string]: Chat} = snapshot.val();
-        this.lookForDuplicatesAndSortChats(data, scrollCb);
-    });
+    this.wsService.listenToDatabaseChanges<Chat>('chats', this.lookForDuplicatesAndSortChats.bind(this), scrollCb);
   }
 
   onChatSubmit(chat: Chat): void {
-    set(ref(this.db, `chats/${chat.id}`), chat);
+    this.wsService.addItem<Chat>('chats', chat);
   }
 }

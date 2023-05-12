@@ -16,6 +16,9 @@ export class UserDialogComponent {
     ) {}
 
     addNewUser(): void {
-      this.userService.user = new User(uuidv4(), this.userName);
+      const user = new User(uuidv4(), this.userName);
+      this.userService.user = user;
+      this.userService.addUserToDatabase(user);
+
     }
 }
