@@ -14,7 +14,9 @@ export class AppComponent implements OnInit {
   constructor(private userSerivce: UserService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.dialog.open(UserDialogComponent);
+    this.dialog.open(UserDialogComponent, {
+      disableClose: true
+    });
   }
 
   get user$(): BehaviorSubject<User | null> {
