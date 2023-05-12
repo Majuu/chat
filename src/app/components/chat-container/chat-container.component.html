@@ -1,7 +1,7 @@
 <div class="chat">
   <mat-card class="chat__container">
     <mat-card-content #chatRef class="chat__top">
-      <app-chat-messages [chats]="chats"></app-chat-messages>
+      <app-chat-messages [chats]="(chatList$ | async)!"></app-chat-messages>
     </mat-card-content>
     <mat-card-actions class="chat__bottom">
       <app-chat-form (sendMessage)="onChatSubmit($event)" class="chat__form"></app-chat-form>

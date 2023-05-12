@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./chat-message.component.scss']
 })
 export class ChatMessageComponent {
-  @Input() chats: Chat[] = [];
+  @Input() chats!: Chat[];
 
   user: User;
   authorUserName = `You (${this.userService.user.name})`;
