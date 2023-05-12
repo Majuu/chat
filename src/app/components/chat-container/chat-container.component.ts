@@ -42,6 +42,8 @@ export class ChatContainerComponent implements OnInit {
 // ! add user info (WHO AM I)
 // ! WHO IS ONLINE!
 // ! forms handling
+// ! bubbles styling
+// ! animations?
 // ! delete all on init
 // ! add prettier
 // ! tests
