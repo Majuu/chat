@@ -1,8 +1,10 @@
-<div class="dialog__content" mat-dialog-content align="center">
-  <mat-form-field appearance="outline">
-    <input placeholder="Nick name" matInput [(ngModel)]="userName">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions align="end">
-  <button [disabled]="!userName.trim().length" mat-button [mat-dialog-close]="userName.length" (click)="addNewUser()">Let's chat!</button>
-</div>
+<form [formGroup]="userForm" (ngSubmit)="addNewUser()">
+  <div class="dialog__content" mat-dialog-content align="center">
+    <mat-form-field appearance="outline">
+      <input placeholder="Nick name" matInput formControlName="userName">
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button type="submit" [disabled]="!userForm.valid" mat-button [mat-dialog-close]="userForm.valid">Let's chat!</button>
+  </div>
+</form>

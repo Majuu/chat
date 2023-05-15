@@ -11,5 +11,9 @@ body {
   max-width: max-content;
   margin: auto;
   color: $color-white;
-  }
+}
+
+button:disabled {
+  opacity: 0.5;
+}
 

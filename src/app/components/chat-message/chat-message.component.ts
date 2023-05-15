@@ -19,7 +19,7 @@ export class ChatMessageComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.userService.user$.getValue()!;
+    this.user = this.userService.user$.getValue() as User;
     this.authorUserName = `You (${this.user.name})`;
   }
 }
