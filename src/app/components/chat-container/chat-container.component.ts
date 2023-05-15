@@ -40,12 +40,6 @@ export class ChatContainerComponent implements OnInit {
   }
 }
 
-// ! animations?
-
-// ! add user info (WHO AM I)
-// ! WHO IS ONLINE!
-// ! delete all on init
-
 // ! add prettier
 // ! tests
 // ! delete env on github https://stackoverflow.com/questions/30696930/how-to-hide-env-file-from-github

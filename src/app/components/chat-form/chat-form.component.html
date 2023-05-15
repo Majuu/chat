@@ -1,6 +1,6 @@
 <form [formGroup]="chatForm" (ngSubmit)="submit()">
 <div class="container">
-    <input #chatInput formControlName="chatMessage" placeholder="Your message...">
+    <input type="text" #chatInput formControlName="chatMessage" placeholder="Your message...">
     <button type="submit" class="submit-btn" [disabled]="!chatForm.valid" mat-stroked-button>
       <mat-icon>send</mat-icon>
     </button>

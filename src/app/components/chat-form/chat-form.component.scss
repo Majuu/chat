@@ -23,6 +23,7 @@ input {
   outline: none;
   background-color: $color-purple;
   color: $color-white;
+  font-family: inherit;
 }
 
 ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
