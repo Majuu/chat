@@ -11,7 +11,7 @@ export class MessageService {
 
   constructor(private wsService: WsService) {}
 
-  private lookForDuplicatesAndSortChats(data: {[key: string]: Chat}, scrollCb: Function): void {
+  private lookForDuplicatesAndSortChats(data: {[key: string]: Chat}, scrollCb: (() => void) | undefined): void {
     const unsortedChats: Chat[] = [];
     let chats = this._chats.getValue();
     for(const id in data) {
@@ -26,14 +26,14 @@ export class MessageService {
     }
     this._chats.next(Object.values(chats));
 
-    scrollCb();
+    if(scrollCb) scrollCb();
   }
 
   get chats$(): Observable<Chat[]> {
     return this._chats.asObservable();
   }
 
-  listenToDatabaseChanges(scrollCb: Function): void {
+  listenToDatabaseChanges(scrollCb: () => void): void {
     this.wsService.listenToDatabaseChanges<Chat>('chats', this.lookForDuplicatesAndSortChats.bind(this), scrollCb);
   }
 

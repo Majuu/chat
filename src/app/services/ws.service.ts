@@ -18,17 +18,19 @@ export class WsService {
       return this.http.delete<void>(`${environment.firebase.databaseURL}/${itemsCategory}.json`);
     }
 
-   listenToDatabaseChanges<K>(endpoint: string, cb: Function, cb2?: Function): void {
+   listenToDatabaseChanges<K>(
+    endpoint: string,
+    cb: (data: {[key: string]: K}, scrollCb?: () => void) => void,
+    cb2?: () => void | undefined): void {
     const chatsRef: DatabaseReference = ref(this.db, endpoint);
     onValue(chatsRef, (snapshot: DataSnapshot) => {
       const data: {[key: string]: K} = snapshot.val();
-      cb(data, cb2);
+        cb(data, cb2);
     });
   }
 
     addItem<K extends {id: string}>(endpoint: string, item: K): void {
       set(ref(this.db, `${endpoint}/${item.id}`), item);
     }
-
 
 }

@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserDialogComponent } from './components/user-dialog/user-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -33,6 +34,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatIconModule,
     MatInputModule,
     MatDialogModule,
+    MatSnackBarModule,
     HttpClientModule
   ],
   providers: [],

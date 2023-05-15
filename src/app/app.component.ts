@@ -14,15 +14,13 @@ import { WsService } from './services/ws.service';
 export class AppComponent implements OnInit {
   constructor(private wsService: WsService, private userSerivce: UserService, private dialog: MatDialog) { }
 
-  //TODO do not remove currently logged in users
-  //TODO detect if user disconnected
   private initiallyClearAllData(): void {
-    this.wsService.deleteItems('chats').subscribe();
+    // this.wsService.deleteItems('chats').subscribe();
     this.wsService.deleteItems('users').subscribe();
   }
 
   ngOnInit(): void {
-    // this.initiallyClearAllData();
+    this.initiallyClearAllData();
     this.dialog.open(UserDialogComponent, {
       disableClose: true
     });

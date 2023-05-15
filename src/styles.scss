@@ -17,3 +17,10 @@ button:disabled {
   opacity: 0.5;
 }
 
+.mat-mdc-snack-bar-container {
+  &.snackbar {
+    --mdc-snackbar-container-color: #5765FC;
+    --mdc-snackbar-supporting-text-color: $color-white;
+  }
+}
+
