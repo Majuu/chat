@@ -15,7 +15,7 @@ export class AppComponent implements OnInit {
   constructor(private wsService: WsService, private userSerivce: UserService, private dialog: MatDialog) { }
 
   private initiallyClearAllData(): void {
-    // this.wsService.deleteItems('chats').subscribe();
+    this.wsService.deleteItems('chats').subscribe();
     this.wsService.deleteItems('users').subscribe();
   }
 

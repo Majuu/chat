@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ChatFormComponent } from './chat-form.component';
+import { MatIconModule } from '@angular/material/icon';
+import { ReactiveFormsModule } from '@angular/forms';
 
 describe('ChatFormComponent', () => {
   let component: ChatFormComponent;
@@ -8,6 +10,7 @@ describe('ChatFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [MatIconModule, ReactiveFormsModule],
       declarations: [ ChatFormComponent ]
     })
     .compileComponents();
