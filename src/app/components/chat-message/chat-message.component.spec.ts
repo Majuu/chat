@@ -1,12 +1,9 @@
 import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
-
 import { ChatMessageComponent } from './chat-message.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
-import { SimpleChanges } from '@angular/core';
-import { Chat } from 'src/app/models/chat.model';
 
 describe('ChatMessageComponent', () => {
   let component: ChatMessageComponent;
@@ -42,36 +39,12 @@ describe('ChatMessageComponent', () => {
     expect(component.authorUserName).toEqual(`You (testName)`)
   });
 
-  describe('onChanges', () => {
-    it('should return if it is a first change', () => {
-      const simpleChanges: SimpleChanges = {chats: {firstChange: true, currentValue: [], previousValue: [], isFirstChange: () => true}};
-      component.ngOnChanges(simpleChanges);
+  it('should call triggerLastItemAnimation on input changes', () => {
+    const triggerLastItemAnimationSpy = spyOn(component, 'triggerLastItemAnimation' as never);
 
-      expect(component.initialLoadCompleted).toBe(false);
-      expect(component.firstAnimationShouldBeFired).toBe(false);
-    });
+    component.ngOnChanges();
 
-    it('should trigger animation after initial data loading is completed', () => {
-      const simpleChanges: SimpleChanges = {chats: {firstChange: false, currentValue: [], previousValue: [], isFirstChange: () => true}};
-      component.initialLoadCompleted = true;
-
-      const triggerAnimationSpy = spyOn(component, 'triggerLastItemAnimation' as never);
-
-      component.ngOnChanges(simpleChanges);
-
-      expect(component.firstAnimationShouldBeFired).toBe(true);
-      expect(triggerAnimationSpy).toHaveBeenCalledTimes(1);
-    })
-
-    it('should handle data loading and animation on input changes', () => {
-      const simpleChanges: SimpleChanges = {chats: {firstChange: false, currentValue: [], previousValue: [], isFirstChange: () => true}};
-      component.chats = [new Chat('testId', mockedUser, 'testMsg', new Date().toString())];
-
-      component.ngOnChanges(simpleChanges);
-
-      expect(component.initialLoadCompleted).toBe(true);
-      expect(component.firstAnimationShouldBeFired).toBe(false);
-    });
+    expect(triggerLastItemAnimationSpy).toHaveBeenCalledTimes(1);
   })
 
   it('should reset animation', fakeAsync(() => {
