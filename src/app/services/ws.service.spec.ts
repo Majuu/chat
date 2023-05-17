@@ -1,5 +1,4 @@
 import { TestBed } from '@angular/core/testing';
-
 import { WsService } from './ws.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
@@ -15,5 +14,12 @@ describe('WsService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('should delete items', () => {
+
+    service.deleteItems('test').subscribe(res => {
+      expect(res).toBe(null)
+    });
   });
 });

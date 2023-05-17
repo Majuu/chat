@@ -14,8 +14,8 @@ export class WsService {
 
   constructor(private http: HttpClient) {}
 
-    deleteItems(itemsCategory: string): Observable<void> {
-      return this.http.delete<void>(`${environment.firebase.databaseURL}/${itemsCategory}.json`);
+    deleteItems(itemsCategory: string): Observable<null> {
+      return this.http.delete<null>(`${environment.firebase.databaseURL}/${itemsCategory}.json`);
     }
 
    listenToDatabaseChanges<K>(
