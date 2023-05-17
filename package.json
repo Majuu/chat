@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "deploy": "ng build && firebase deploy"
   },
   "private": true,
   "dependencies": {
@@ -40,6 +41,7 @@
     "@types/uuid": "^9.0.1",
     "@typescript-eslint/eslint-plugin": "5.48.2",
     "@typescript-eslint/parser": "5.48.2",
+    "cypress": "^12.12.0",
     "eslint": "^8.33.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
