@@ -1,27 +1,32 @@
 # Chat
+## Demo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.0.
+https://github.com/Majuu/chat/assets/32650321/bd581b28-a190-4379-a84f-b3fb1e6fa3ac
 
-## Development server
+## Try it yourself
+https://chat-c0b8f.web.app/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## What and why
+The aim of this project is to show my ability to develop an Angular project with websocket connection, animation feature and tests. 
+It was one of my 2023 goals to tidy up my github profile and show my skills in various technologies.
+Please do keep in mind, that this application is just an **example of my skills**, it does not show my whole knowledge.
 
-## Code scaffolding
+## Main technologies
+- Angular 15.2
+- Firebase
+- Cypress
+- Karma + jasmine
+- the rest can be looked up in `package.json` file
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Tests
+The projects includes unit tests (karma + jasmine) and e2e tests (cypress). On request I can share more details.
 
-## Build
+## About the project itself
+This project is a tiny real time chat app. Thanks to the connection to realtime database (via websocket) the application can react immediately to any changes. 
+A thing worth mentioning is the animation that moves all the chat messages up whenever new message appears.
+Do feel free to test the app by yourself (link above).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Final notes
+This project has presentational purposes only. 
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+External usage of the project without permission prohibited.
