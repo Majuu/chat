@@ -39,7 +39,3 @@ export class ChatContainerComponent implements OnInit {
     }, 0)
   }
 }
-
-// ! add prettier
-// ! tests
-// ! delete env on github https://stackoverflow.com/questions/30696930/how-to-hide-env-file-from-github
