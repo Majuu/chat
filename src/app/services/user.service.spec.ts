@@ -42,16 +42,17 @@ describe('UserService', () => {
     expect(listenToDatabaseChangesSpy).toHaveBeenCalledTimes(1);
   });
 
-  it('should just push new data to usersList', () => {
+  it('should push new data to usersList', () => {
     const user1 = new User('1234', 'user1');
     const user2 = new User('54321', 'user2');
 
     const newMockedChats = {'11111' : user1, '22222': user2};
 
+    service['_usersList'].next([mockedUser])
     service['lookForDuplicateUsersAndCreateUsersList'](newMockedChats);
 
     service['_usersList'].subscribe(usersList => {
-      expect(usersList).toEqual([user1, user2]);
+      expect(usersList).toEqual([mockedUser, user1, user2]);
     });
   });
 });
