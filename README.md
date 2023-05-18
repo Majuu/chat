@@ -26,6 +26,8 @@ This project is a tiny real time chat app. Thanks to the connection to realtime 
 A thing worth mentioning is the animation that moves all the chat messages up whenever new message appears.
 Do feel free to test the app by yourself (link above).
 
+**Note:** to avoid any unwanted content, all the data from the database is deleted on every app launch. That is why on start the chat and logged in users list are always empty.
+
 ## Final notes
 This project has presentational purposes only. 
 
