@@ -19,11 +19,13 @@ Please do keep in mind, that this application is just an **example of my skills*
 - the rest can be looked up in `package.json` file
 
 ## Tests
-The projects includes unit tests (karma + jasmine) and e2e tests (cypress). On request I can share more details.
+The project includes unit tests (karma + jasmine) and e2e tests (cypress). On request I can share more details.
 
 ## About the project itself
-This project is a tiny real time chat app. Thanks to the connection to realtime database (via websocket) the application can react immediately to any changes. 
-A thing worth mentioning is the animation that moves all the chat messages up whenever new message appears.
+This project is a tiny real time chat app. Thanks to the connection to firebase realtime database (via websocket) the application can react immediately to any changes (new logged in users or new messages). 
+
+An additional thing worth mentioning is the animation that moves all the chat messages up whenever new message appears.
+
 Do feel free to test the app by yourself (link above).
 
 **Note:** to avoid any unwanted content, all the data from the database is deleted on every app launch. That is why on start the chat and logged in users list are always empty.
