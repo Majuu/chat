@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'environments/environment';
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import { Database, getDatabase, DatabaseReference, ref, onValue, DataSnapshot, set } from 'firebase/database';
 import { Observable } from 'rxjs';
-import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
