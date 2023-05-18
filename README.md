@@ -4,7 +4,7 @@
 https://github.com/Majuu/chat/assets/32650321/bd581b28-a190-4379-a84f-b3fb1e6fa3ac
 
 ## Try it yourself
-https://chat-c0b8f.web.app/
+https://chat-96416.web.app/
 
 ## What and why
 The aim of this project is to show my ability to develop an Angular project with websocket connection, animation feature and tests. 
