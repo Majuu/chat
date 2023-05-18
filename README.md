@@ -1,7 +1,7 @@
 # Chat
 ## Demo
 
-https://github.com/Majuu/chat/assets/32650321/bd581b28-a190-4379-a84f-b3fb1e6fa3ac
+https://github.com/Majuu/chat/assets/32650321/f54d2186-fa92-4599-9daa-6b0aa953cc9c
 
 ## Try it yourself
 https://chat-96416.web.app/
