@@ -28,7 +28,7 @@ An additional thing worth mentioning is the animation that moves all the chat me
 
 Do feel free to test the app by yourself (link above).
 
-**Note:** to avoid any unwanted content, all the data from the database is deleted on every app launch. That is why on start the chat and logged in users list are always empty.
+**Note:** to avoid any unwanted content, all the data from the database is deleted on every app launch.
 
 ## Final notes
 This project has presentational purposes only. 
