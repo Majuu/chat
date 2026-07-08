@@ -24,7 +24,7 @@ describe('ChatFormComponent', () => {
   });
 
   it('should focus chatInput on init', fakeAsync(() => {
-    const chatInputSpy = spyOn(component.chatInput().nativeElement, 'focus');
+    const chatInputSpy = jest.spyOn(component.chatInput().nativeElement, 'focus');
 
     component.ngOnInit();
     tick(0);
@@ -34,15 +34,16 @@ describe('ChatFormComponent', () => {
   }))
 
   it('should send the message, reset the form and focus chat input after submit', () => {
-    const sendMessageSpy = spyOn(component.sendMessage, 'emit');
-    const formResetSpy = spyOn(component.chatForm, 'reset');
-    const chatInputSpy = spyOn(component.chatInput().nativeElement, 'focus');
+    const sendMessageSpy = jest.spyOn(component.sendMessage, 'emit');
+    const formResetSpy = jest.spyOn(component.chatForm, 'reset');
+    const chatInputSpy = jest.spyOn(component.chatInput().nativeElement, 'focus');
 
     component.chatForm.get('chatMessage')?.setValue('Test msg');
 
     component.submit();
 
-    expect(sendMessageSpy).toHaveBeenCalledOnceWith('Test msg');
+    expect(sendMessageSpy).toHaveBeenCalledTimes(1);
+    expect(sendMessageSpy).toHaveBeenCalledWith('Test msg');
     expect(formResetSpy).toHaveBeenCalledTimes(1);
     expect(chatInputSpy).toHaveBeenCalledTimes(1);
   })

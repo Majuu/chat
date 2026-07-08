@@ -29,15 +29,16 @@ describe('UserService', () => {
   });
 
   it('should call addItem method in wsService on addUserToDatabase', () => {
-    const addItemSpy = spyOn(wsService, 'addItem');
+    const addItemSpy = jest.spyOn(wsService, 'addItem');
 
     service.addUserToDatabase(mockedUser);
 
-    expect(addItemSpy).toHaveBeenCalledOnceWith('users', mockedUser);
+    expect(addItemSpy).toHaveBeenCalledTimes(1);
+    expect(addItemSpy).toHaveBeenCalledWith('users', mockedUser);
   });
 
   it('should call listenToDatabaseChanges method in wsService', () => {
-    const listenToDatabaseChangesSpy = spyOn(wsService, 'listenToDatabaseChanges');
+    const listenToDatabaseChangesSpy = jest.spyOn(wsService, 'listenToDatabaseChanges');
 
     service.listenToDatabaseChanges();
 

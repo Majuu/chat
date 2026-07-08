@@ -40,24 +40,25 @@ describe('UserDialogComponent', () => {
   });
 
   it('should not add user to database if no userName was provided', () => {
-    const addUserToDatabaseSpy = spyOn(userService, 'addUserToDatabase');
+    const addUserToDatabaseSpy = jest.spyOn(userService, 'addUserToDatabase');
 
     component.addNewUser();
     expect(addUserToDatabaseSpy).not.toHaveBeenCalled();
   });
 
   it('should add user to database if userName was provided', () => {
-    const addUserToDatabaseSpy = spyOn(userService, 'addUserToDatabase');
+    const addUserToDatabaseSpy = jest.spyOn(userService, 'addUserToDatabase');
     const mockedUser: Partial<User> = {name: 'test user'};
 
     component.userForm.get('userName')?.setValue('test user');
 
     component.addNewUser();
 
-    expect(addUserToDatabaseSpy).toHaveBeenCalledOnceWith(jasmine.objectContaining(mockedUser));
+    expect(addUserToDatabaseSpy).toHaveBeenCalledTimes(1);
+    expect(addUserToDatabaseSpy).toHaveBeenCalledWith(expect.objectContaining(mockedUser));
 
     userService.user$.subscribe(user => {
-      expect(user).toEqual(jasmine.objectContaining(mockedUser));
+      expect(user).toEqual(expect.objectContaining(mockedUser));
     })
   });
 });

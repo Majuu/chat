@@ -39,15 +39,16 @@ describe('MessageService', () => {
   });
 
   it('should call addItem method in wsService on ChatSubmit', () => {
-    const addItemSpy = spyOn(wsService, 'addItem');
+    const addItemSpy = jest.spyOn(wsService, 'addItem');
 
     service.onChatSubmit(mockedChat);
 
-    expect(addItemSpy).toHaveBeenCalledOnceWith('chats', mockedChat);
+    expect(addItemSpy).toHaveBeenCalledTimes(1);
+    expect(addItemSpy).toHaveBeenCalledWith('chats', mockedChat);
   });
 
   it('should call listenToDatabaseChanges method in wsService', () => {
-    const listenToDatabaseChangesSpy = spyOn(wsService, 'listenToDatabaseChanges');
+    const listenToDatabaseChangesSpy = jest.spyOn(wsService, 'listenToDatabaseChanges');
 
     const scrollCbMock = () => {return;}
 

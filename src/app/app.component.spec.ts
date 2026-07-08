@@ -53,7 +53,7 @@ describe('AppComponent', () => {
   it('should call a function that deletes all data initially', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const component = fixture.componentInstance;
-    const componentSpy = spyOn<AppComponent>(component, 'initiallyClearAllData' as never);
+    const componentSpy = jest.spyOn<AppComponent, never>(component, 'initiallyClearAllData' as never);
 
     component.ngOnInit();
     expect(componentSpy).toHaveBeenCalled();
@@ -62,7 +62,7 @@ describe('AppComponent', () => {
   it('should call wsService clear methods on calling initiallyClearAllData method', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const component = fixture.componentInstance;
-    const wsServiceSpy = spyOn(wsService, 'deleteItems').and.returnValue(of());
+    const wsServiceSpy = jest.spyOn(wsService, 'deleteItems').mockReturnValue(of(null));
 
     component['initiallyClearAllData']();
 

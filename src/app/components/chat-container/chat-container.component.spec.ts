@@ -46,13 +46,14 @@ describe('ChatContainerComponent', () => {
   });
 
   it('should call message and user services on init', () => {
-    const userServiceSpy = spyOn(userService, 'listenToDatabaseChanges');
-    const messageServiceSpy = spyOn(messageService, 'listenToDatabaseChanges');
+    const userServiceSpy = jest.spyOn(userService, 'listenToDatabaseChanges');
+    const messageServiceSpy = jest.spyOn(messageService, 'listenToDatabaseChanges');
 
     component.ngOnInit();
 
     expect(userServiceSpy).toHaveBeenCalledTimes(1);
-    expect(messageServiceSpy).toHaveBeenCalledOnceWith(component.scrollToBottom);
+    expect(messageServiceSpy).toHaveBeenCalledTimes(1);
+    expect(messageServiceSpy).toHaveBeenCalledWith(component.scrollToBottom);
   });
 
   it('should return chat list', () => {
@@ -62,12 +63,12 @@ describe('ChatContainerComponent', () => {
   });
 
   it('should construct and send chat on submit', () => {
-    const messageServiceSpy = spyOn(messageService, 'onChatSubmit');
+    const messageServiceSpy = jest.spyOn(messageService, 'onChatSubmit');
     const mockedChatResult: Partial<Chat> = {message: 'test msg', timestamp: new Date().toString(), user: mockedUser};
 
     component.onChatSubmit('test msg');
 
     expect(messageServiceSpy).toHaveBeenCalledTimes(1);
-    expect(messageServiceSpy).toHaveBeenCalledWith(jasmine.objectContaining(mockedChatResult));
+    expect(messageServiceSpy).toHaveBeenCalledWith(expect.objectContaining(mockedChatResult));
   });
 });
