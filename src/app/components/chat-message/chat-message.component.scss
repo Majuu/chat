@@ -36,4 +36,17 @@
     margin-top: 5px;
     margin-bottom: 5px;
   }
+
+  &.bubble-enter {
+    animation: bubble-slide-in 0.3s;
+  }
+}
+
+@keyframes bubble-slide-in {
+  from {
+    top: 75px;
+  }
+  to {
+    top: 0;
+  }
 }

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserDialogComponent } from './user-dialog.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('UserDialogComponent', () => {
   let component: UserDialogComponent;
@@ -18,17 +19,14 @@ describe('UserDialogComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        MatSnackBarModule,
+    imports: [MatSnackBarModule,
         MatFormFieldModule,
         ReactiveFormsModule,
         MatDialogModule,
         MatInputModule,
-        BrowserAnimationsModule
-          ],
-      declarations: [ UserDialogComponent ]
-    })
+        BrowserAnimationsModule, UserDialogComponent],
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
 
     userService = TestBed.inject(UserService);

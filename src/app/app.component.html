@@ -1,2 +1,4 @@
-<app-chat-container *ngIf="user$ | async"></app-chat-container>
+@if (user$ | async) {
+  <app-chat-container />
+}
 

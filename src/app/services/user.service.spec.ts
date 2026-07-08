@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
 import { UserService } from './user.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { WsService } from './ws.service';
 import { User } from '../models/user.model';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('UserService', () => {
   let service: UserService;
@@ -15,8 +16,9 @@ describe('UserService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatSnackBarModule, BrowserAnimationsModule]
-    });
+    imports: [MatSnackBarModule, BrowserAnimationsModule],
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
     wsService = TestBed.inject(WsService);
     service = TestBed.inject(UserService);

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { User } from '../models/user.model';
 import { BehaviorSubject } from 'rxjs';
 import { WsService } from './ws.service';
@@ -8,10 +8,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   providedIn: 'root'
 })
 export class UserService {
+  private wsService = inject(WsService);
+  private _snackBar = inject(MatSnackBar);
+
   private _currentUser = new BehaviorSubject<User | null>(null);
   private _usersList = new BehaviorSubject<User[]>([]);
-
-  constructor(private wsService: WsService, private _snackBar: MatSnackBar) { }
 
   private lookForDuplicateUsersAndCreateUsersList(data: {[key: string]: User}) {
     const users: User[] = [];

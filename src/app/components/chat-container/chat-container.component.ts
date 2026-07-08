@@ -1,21 +1,26 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, viewChild, inject } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Chat } from 'src/app/models/chat.model';
 import { User } from 'src/app/models/user.model';
 import { MessageService } from 'src/app/services/message.service';
 import { UserService } from 'src/app/services/user.service';
 import { v4 as uuidv4 } from 'uuid';
+import { MatCard, MatCardContent, MatCardActions } from '@angular/material/card';
+import { ChatMessageComponent } from '../chat-message/chat-message.component';
+import { ChatFormComponent } from '../chat-form/chat-form.component';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-chat-container',
-  templateUrl: './chat-container.component.html',
-  styleUrls: ['./chat-container.component.scss']
+    selector: 'app-chat-container',
+    templateUrl: './chat-container.component.html',
+    styleUrl: './chat-container.component.scss',
+    imports: [MatCard, MatCardContent, ChatMessageComponent, MatCardActions, ChatFormComponent, AsyncPipe]
 })
 export class ChatContainerComponent implements OnInit {
-  @ViewChild('chatRef') chatRef!: ElementRef;
+  readonly chatRef = viewChild.required<ElementRef>('chatRef');
 
-  constructor(private userService: UserService, private messageService: MessageService) {
-  }
+  private userService = inject(UserService);
+  private messageService = inject(MessageService);
 
   ngOnInit(): void {
     this.messageService.listenToDatabaseChanges(this.scrollToBottom);
@@ -34,8 +39,8 @@ export class ChatContainerComponent implements OnInit {
   scrollToBottom = (): void => {
     setTimeout(() => {
       try {
-        this.chatRef.nativeElement.scrollTop = this.chatRef.nativeElement.scrollHeight;
-      } catch (err) { return; }
+        this.chatRef().nativeElement.scrollTop = this.chatRef().nativeElement.scrollHeight;
+      } catch { return; }
     }, 0)
   }
 }

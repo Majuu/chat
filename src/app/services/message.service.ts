@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Chat } from '../models/chat.model';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { WsService } from './ws.service';
@@ -7,9 +7,9 @@ import { WsService } from './ws.service';
   providedIn: 'root'
 })
 export class MessageService {
-  private _chats = new BehaviorSubject<Chat[]>([]);
+  private wsService = inject(WsService);
 
-  constructor(private wsService: WsService) {}
+  private _chats = new BehaviorSubject<Chat[]>([]);
 
   private lookForDuplicatesAndSortChats(data: {[key: string]: Chat}, scrollCb: (() => void) | undefined): void {
     const unsortedChats: Chat[] = [];

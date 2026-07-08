@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
 import { MessageService } from './message.service';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { Chat } from '../models/chat.model';
 import { User } from '../models/user.model';
 import { WsService } from './ws.service';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('MessageService', () => {
   let service: MessageService;
@@ -16,8 +17,9 @@ describe('MessageService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
-    });
+    imports: [],
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
     wsService = TestBed.inject(WsService);
     service = TestBed.inject(MessageService);

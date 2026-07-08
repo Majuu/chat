@@ -1,25 +1,28 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, output, viewChild, inject } from '@angular/core';
+import { FormBuilder, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-chat-form',
-  templateUrl: './chat-form.component.html',
-  styleUrls: ['./chat-form.component.scss']
+    selector: 'app-chat-form',
+    templateUrl: './chat-form.component.html',
+    styleUrl: './chat-form.component.scss',
+    imports: [FormsModule, ReactiveFormsModule, MatButton, MatIcon]
 })
 export class ChatFormComponent implements OnInit {
-  @ViewChild('chatInput') chatInput!: ElementRef;
+  readonly chatInput = viewChild.required<ElementRef>('chatInput');
 
-  @Output() sendMessage = new EventEmitter<string>();
+  sendMessage = output<string>();
+
+  private fb = inject(FormBuilder);
 
   chatForm = this.fb.nonNullable.group({
     chatMessage: ['', Validators.required]
   })
 
-  constructor(private fb: FormBuilder) { }
-
   ngOnInit(): void {
     setTimeout(() => {
-    this.chatInput.nativeElement.focus();
+    this.chatInput().nativeElement.focus();
     }, 0)
   }
 
@@ -29,7 +32,7 @@ export class ChatFormComponent implements OnInit {
     if(chatMessage) {
       this.sendMessage.emit(chatMessage);
       this.chatForm.reset();
-      this.chatInput.nativeElement.focus();
+      this.chatInput().nativeElement.focus();
     }
   }
 }

@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { UserService } from './services/user.service';
@@ -16,6 +16,7 @@ import { ChatFormComponent } from './components/chat-form/chat-form.component';
 import { MatIconModule } from '@angular/material/icon';
 import { WsService } from './services/ws.service';
 import { of } from 'rxjs';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('AppComponent', () => {
   let userService: UserService;
@@ -23,17 +24,12 @@ describe('AppComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-         MatSnackBarModule, MatDialogModule, MatFormFieldModule, BrowserAnimationsModule, FormsModule, MatCardModule, ReactiveFormsModule, MatIconModule],
-      declarations: [
-        AppComponent,
-        ChatContainerComponent,
+    imports: [MatSnackBarModule, MatDialogModule, MatFormFieldModule, BrowserAnimationsModule, FormsModule, MatCardModule, ReactiveFormsModule, MatIconModule, ChatContainerComponent,
         ChatMessageComponent,
         UserDialogComponent,
-        ChatFormComponent
-      ],
-    }).compileComponents();
+        ChatFormComponent, AppComponent],
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
 
     wsService = TestBed.inject(WsService);
     userService = TestBed.inject(UserService);

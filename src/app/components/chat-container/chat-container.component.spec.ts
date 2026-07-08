@@ -8,10 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from 'src/app/services/user.service';
 import { User } from 'src/app/models/user.model';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MessageService } from 'src/app/services/message.service';
 import { Chat } from 'src/app/models/chat.model';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('ChatContainerComponent', () => {
   let component: ChatContainerComponent;
@@ -24,9 +25,9 @@ describe('ChatContainerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, MatSnackBarModule, MatCardModule, MatIconModule, BrowserAnimationsModule, ReactiveFormsModule],
-      declarations: [ ChatContainerComponent, ChatMessageComponent, ChatFormComponent],
-    })
+    imports: [MatSnackBarModule, MatCardModule, MatIconModule, BrowserAnimationsModule, ReactiveFormsModule, ChatContainerComponent, ChatMessageComponent, ChatFormComponent],
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
 
     messageService = TestBed.inject(MessageService);

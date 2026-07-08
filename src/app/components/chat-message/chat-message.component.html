@@ -1,6 +1,8 @@
-  <div class="container">
-  <div *ngFor="let chat of chats" class="bubble" [ngClass]="user.id === chat.user.id ? 'bubble-author' : 'bubble-guest'" [@openClose]="isLastItemOpen ? 'open' : 'closed'">
-    <span id="user-date">{{user.id === chat.user.id ? authorUserName : chat.user.name}}, {{chat.timestamp | date : 'HH:mm'}}</span>
-    <span id="message">{{chat.message}}</span>
-  </div>
+<div class="container">
+  @for (chat of chats(); track chat) {
+    <div class="bubble" [ngClass]="user.id === chat.user.id ? 'bubble-author' : 'bubble-guest'" animate.enter="bubble-enter">
+      <span id="user-date">{{user.id === chat.user.id ? authorUserName : chat.user.name}}, {{chat.timestamp | date : 'HH:mm'}}</span>
+      <span id="message">{{chat.message}}</span>
+    </div>
+  }
 </div>

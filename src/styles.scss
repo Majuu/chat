@@ -20,8 +20,8 @@ button:disabled {
 
 .mat-mdc-snack-bar-container {
   &.snackbar {
-    --mdc-snackbar-container-color: #5765FC;
-    --mdc-snackbar-supporting-text-color: $color-white;
+    --mat-snackbar-container-color: #5765FC;
+    --mat-snackbar-supporting-text-color: $color-white;
   }
 }
 

@@ -10,9 +10,8 @@ describe('ChatFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatIconModule, ReactiveFormsModule],
-      declarations: [ ChatFormComponent ]
-    })
+    imports: [MatIconModule, ReactiveFormsModule, ChatFormComponent]
+})
     .compileComponents();
 
     fixture = TestBed.createComponent(ChatFormComponent);
@@ -25,7 +24,7 @@ describe('ChatFormComponent', () => {
   });
 
   it('should focus chatInput on init', fakeAsync(() => {
-    const chatInputSpy = spyOn(component.chatInput.nativeElement, 'focus');
+    const chatInputSpy = spyOn(component.chatInput().nativeElement, 'focus');
 
     component.ngOnInit();
     tick(0);
@@ -37,7 +36,7 @@ describe('ChatFormComponent', () => {
   it('should send the message, reset the form and focus chat input after submit', () => {
     const sendMessageSpy = spyOn(component.sendMessage, 'emit');
     const formResetSpy = spyOn(component.chatForm, 'reset');
-    const chatInputSpy = spyOn(component.chatInput.nativeElement, 'focus');
+    const chatInputSpy = spyOn(component.chatInput().nativeElement, 'focus');
 
     component.chatForm.get('chatMessage')?.setValue('Test msg');
 
