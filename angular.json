@@ -15,11 +15,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular/build:application",
           "options": {
-            "outputPath": "dist/chat",
+            "outputPath": {
+              "base": "dist/chat"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -32,7 +33,13 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "src/main.ts",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "."
+              ]
+            }
           },
           "configurations": {
             "production": {
@@ -51,9 +58,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
@@ -62,7 +67,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
               "buildTarget": "chat:build:production"
@@ -74,7 +79,7 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "builder": "@angular/build:extract-i18n",
           "options": {
             "buildTarget": "chat:build"
           }
@@ -84,7 +89,8 @@
           "options": {
             "zoneless": false,
             "modulePaths": ["<rootDir>"],
-            "transformIgnorePatterns": ["node_modules/(?!(.*\\.mjs$|@angular/common/locales/.*\\.js$|uuid/))"]
+            "transformIgnorePatterns": ["node_modules/(?!(.*\\.mjs$|@angular/common/locales/.*\\.js$|uuid/))"],
+            "transform": "{\"^.+\\\\.(ts|js|mjs|html|svg)$\":[\"jest-preset-angular\",{\"stringifyContentPathRegex\":\"\\\\.(html|svg)$\",\"tsconfig\":\"tsconfig.spec.json\"}]}"
           }
         },
         "lint": {

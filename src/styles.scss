@@ -1,5 +1,5 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
-@import '/src/variables';
+@use '@angular/material/prebuilt-themes/indigo-pink.css';
+@use '/src/variables' as *;
 
 html,
 body {

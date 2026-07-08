@@ -12,7 +12,7 @@ It was one of my 2023 goals to tidy up my github profile and show my skills in v
 Please do keep in mind, that this application is just an **example of my skills**, it does not show my whole knowledge.
 
 ## Main technologies
-- Angular 15.2
+- Angular 22
 - Firebase
 - Cypress
 - Karma + jasmine
