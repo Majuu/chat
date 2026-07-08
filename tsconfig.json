@@ -22,7 +22,6 @@
     "types": ["jest", "node"]
   },
   "exclude": [
-    "src/declarations/**",
     "cypress/**",
     "cypress.config.ts"
   ],

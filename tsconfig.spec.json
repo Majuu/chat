@@ -11,9 +11,6 @@
     "src/**/*.spec.ts",
     "src/**/*.d.ts"
   ],
-  "exclude": [
-    "src/declarations/**"
-  ],
   "angularCompilerOptions": {
     "extendedDiagnostics": {
       "checks": {
