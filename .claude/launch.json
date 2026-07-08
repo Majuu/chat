@@ -3,9 +3,7 @@
   "configurations": [
     {
       "name": "chat-dev",
-      "runtimeExecutable": "/Users/arturmaj/.nvm/versions/node/v22.22.3/bin/node",
       "runtimeArgs": [
-        "/Users/arturmaj/.nvm/versions/node/v22.22.3/bin/npm",
         "run",
         "start"
       ],

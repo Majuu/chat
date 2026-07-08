@@ -1,0 +1,5 @@
+/ Notes for me in the future /
+
+1. create environment.ts
+2. go to Firebase -> *this project* -> settings
+3. Copy paste the config object (object key firebase not firebaseConfig!)
