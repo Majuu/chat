@@ -11,15 +11,17 @@ The aim of this project is to show my ability to develop an Angular project with
 It was one of my 2023 goals to tidy up my github profile and show my skills in various technologies.
 Please do keep in mind, that this application is just an **example of my skills**, it does not show my whole knowledge.
 
+Note: packages upgrade in 2026. Refactored the project to use latest Angular practices. Replaced Karma/Jasmine unit tests with Jest. Added basic skills for AI agent. 
+
 ## Main technologies
 - Angular 22
 - Firebase
 - Cypress
-- Karma + jasmine
+- Jest
 - the rest can be looked up in `package.json` file
 
 ## Tests
-The project includes unit tests (karma + jasmine) and e2e tests (cypress). On request I can share more details.
+The project includes unit tests (Jest) and e2e tests (cypress). On request I can share more details.
 
 ## About the project itself
 This project is a tiny real time chat app. Thanks to the connection to firebase realtime database (via websocket) the application can react immediately to any changes (new logged in users or new messages). 
